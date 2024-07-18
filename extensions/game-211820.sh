@@ -113,3 +113,8 @@ function EXTENSION_AFTER() {
         debug "New name: $(filename_convert "$n")"
     done
 }
+
+# Export functions to SWDS
+export -f EXTENSION_WSITEM_LOOP
+export -f EXTENSION_BEFORE
+export -f EXTENSION_AFTER
