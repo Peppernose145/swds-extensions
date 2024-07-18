@@ -79,8 +79,3 @@ function EXTENSION_AFTER() {
     shift 4 # Clear args so we can use $1, $2, and so on for extra data
     # Put code here
 }
-
-# Export functions to SWDS
-export -f EXTENSION_WSITEM_LOOP
-export -f EXTENSION_BEFORE
-export -f EXTENSION_AFTER
