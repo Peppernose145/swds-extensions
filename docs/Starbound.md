@@ -1,4 +1,4 @@
-# Starbound extension
+# Starbound extension (game-211820.sh)
 This extension modifies file structure for Starbound by renaming contents.pak to the respective mod name.
 
 ## Example
