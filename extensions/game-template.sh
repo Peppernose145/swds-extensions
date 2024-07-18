@@ -51,20 +51,20 @@ function getworkshopname() {
 
 # Code to execute before running SteamCMD
 function EXTENSION_BEFORE() {
-    DEBUG=$1
-    WORKSHOPID=$2
-    SUSER=$3
-    WSITEMS=$4
+    local DEBUG=$1
+    local WORKSHOPID=$2
+    local SUSER=$3
+    local WSITEMS=$4
     shift 4 # Clear args so we can use $1, $2, and so on for extra data
     # Put code here
 }
 
 # Code to execute after running SteamCMD
 function EXTENSION_AFTER() {
-    DEBUG=$1
-    WORKSHOPID=$2
-    SUSER=$3
-    WSITEMS=$4
+    local DEBUG=$1
+    local WORKSHOPID=$2
+    local SUSER=$3
+    local WSITEMS=$4
     shift 4 # Clear args so we can use $1, $2, and so on for extra data
     # Put code here
 }
