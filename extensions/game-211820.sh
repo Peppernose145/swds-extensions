@@ -60,7 +60,7 @@ function filename_convert() {
     debug "Converting filename: $input"
     local output=
     for (( counter=0 ; counter < ${#input} ; counter++ )); do
-        debug "${input:$counter:1}"
+        #debug "${input:$counter:1}"
         char="${input:$counter:1}"
         if [[ $char =~ [a-zA-Z0-9._] ]]; then
             output="$output$char"
@@ -115,13 +115,23 @@ function EXTENSION_AFTER() {
     local WSITEMS="$3"
     shift 3 # Clear args so we can use $1, $2, and so on for extra data
     debug "Ran EXTENSION_AFTER $DEBUG '$SUSER' '$WSITEMS'"
-    local DL_DIR="$HOME/Downloads/SteamWorkshop/Appid-211820/steamapps/workshop/content/211820"
+    local DL_RT="$HOME/Downloads/SteamWorkshop/Appid-211820"
+    local DL_DIR="$DL_RT/steamapps/workshop/content/211820"
     local DEST_DIR="$HOME/Downloads/SteamWorkshop/Starbound/mods"
-    mkdir "$DEST_DIR"
+    mkdir -p "$DEST_DIR"
+    EC=$?
+    if [[ $EC -gt 0 ]]; then
+        echo >&2 "Could not create directory!"
+        return 1
+    fi
     for i in ${WSITEMS[@]}; do
         debug "Processing $i"
         local c="$DL_DIR/$i"
         local n=$(getworkshopname $i)
-        debug "New name: $(filename_convert "$n")"
+        local nn=$(filename_convert "$n")
+        local cf="$DL_DIR/$i/contents.pak"
+        debug "New name: $nn.pak"
+        mv "$cf" "$DEST_DIR/$nn.pak" || return 1
     done
+    rm -rf "$DL_RT"
 }
