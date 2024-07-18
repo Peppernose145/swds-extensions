@@ -11,19 +11,21 @@ function debug() {
 
 # getgamename - Function that extracts the name of a game from the Steam Store page or from cache given an AppID
 function getgamename() {
-    if [[ -e $HOME/.cache/steam-ws-download/gamename/$1 ]]; then
-        echo -n "$(< $home/.cache/steam-ws-download/gamename/$1)"
+    if [[ -e $SWDS_CACHEDIR/gamename/$1 ]]; then
+        echo -n "$(< $SWDS_CACHEDIR/gamename/$1)"
+        debug "Found cache file: $SWDS_CACHEDIR/gamename/$1"
     else
+        debug "Fetching store page"
         local appid=$1
         local pattern='(?<=data-appname="&quot;).*(?=&quot;")'
-        local html=$(curl 2>/dev/null "https://store.steampowered.com/app/$appid" | grep -oP "$pattern")
+        local html=$(curl 2>/dev/null -f "https://store.steampowered.com/app/$appid" | grep -oP "$pattern")
         local EC=$?
         if [[ $EC -gt 0 ]]; then
             debug "getgamename: AppID input was $appid, and grep exited with code $EC"
             return 404
         else
             echo -n "$html" 
-            echo -n "$html" > $HOME/.cache/steam-ws-download/gamename/$appid
+            echo -n "$html" > $SWDS_CACHEDIR/gamename/$appid
         fi
     fi
     return
@@ -31,19 +33,19 @@ function getgamename() {
 
 # getworkshopname - Function that extracts the name of a Workshop item from the Steam Workshop page or from cache given a Workshop ID
 function getworkshopname() {
-    if [[ -e $HOME/.cache/steam-ws-download/wsitemname/$1 ]]; then
-        echo -n $(< $HOME/.cache/steam-ws-download/wsitemname/$1
+    if [[ -e "$SWDS_CACHEDIR/wsitemname/$1" ]]; then
+        echo -n $(< "$SWDS_CACHEDIR/wsitemname/$1")
     else
         local wsid=$1
         local pattern='(?<=\<div class="workshopItemTitle"\>).*(?=\<\/div\>)'
-        local html=$(curl 2>/dev/null "https://steamcommunity.com/sharedfiles/filedetails/?id=$wsid" | grep -oP "$pattern")
+        local html=$(curl 2>/dev/null -f "https://steamcommunity.com/sharedfiles/filedetails/?id=$wsid" | grep -oP "$pattern")
         local EC=$?
         if [[ $EC -gt 0 ]]; then
             debug "getworkshopname: Workshop ID input was $wsid, and grep exited with code $EC"
             return 404
         else
             echo -n "$html"
-            echo -n "$html" > $HOME/.cache/steam-ws-download/$wsid
+            echo -n "$html" > $SWDS_CACHEDIR/wsitemname/$wsid
         fi
     fi
     return
