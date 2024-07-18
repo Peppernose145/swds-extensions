@@ -62,8 +62,14 @@ function filename_convert() {
     for (( counter=0 ; counter < ${#input} ; counter++ )); do
         debug "${input:$counter:1}"
         char="${input:$counter:1}"
-        if [[ $char =~ [a-zA-Z0-9._] ]]; then
+        if [[ $char =~ [a-zA-Z0-9._-()\[\]] ]]; then
             output="$output$char"
+        elif [[ $char =~ [+] ]]; then
+            output="${output}plus"
+        elif [[ $char =~ [=] ]]; then
+            output="${output}equals"
+        elif [[ $char =~ [&] ]]; then
+            output="${output}and"
         else
             output="${output}_"
         fi
