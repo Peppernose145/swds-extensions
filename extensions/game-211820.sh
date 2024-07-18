@@ -70,23 +70,30 @@ function filename_convert() {
     done
     echo -n "$output"
 }
+# Code to execute each loop when iterating through workshop items
+function EXTENSION_WSITEM_LOOP() {
+    local DEBUG=$1
+    local WORKSHOPID=$2
+    local SUSER="$3"
+    local WSITEMS="$4"
+    shift 4
+}
+
 # Code to execute before running SteamCMD
 function EXTENSION_BEFORE() {
     local DEBUG=$1
-    local WORKSHOPID=$2
-    local SUSER=$3
-    local WSITEMS=$4
-    shift 4 # Clear args so we can use $1, $2, and so on for extra data
+    local SUSER="$2"
+    local WSITEMS="$3"
+    shift 3 # Clear args so we can use $1, $2, and so on for extra data
     # There's nothing to see here
 }
 
 # Code to execute after running SteamCMD
 function EXTENSION_AFTER() {
     local DEBUG=$1
-    local WORKSHOPID=$2
-    local SUSER=$3
-    local WSITEMS=$4
-    shift 4 # Clear args so we can use $1, $2, and so on for extra data
+    local SUSER="$2"
+    local WSITEMS="$3"
+    shift 3 # Clear args so we can use $1, $2, and so on for extra data
     local DL_DIR="$HOME/Downloads/SteamWorkshop/Appid-211820/steamapps/workshop/content/211820"
     local DEST_DIR="$HOME/Downloads/SteamWorkshop/Starbound/mods"
     mkdir "$DEST_DIR"
