@@ -10,7 +10,6 @@ function debug() {
 }
 
 # getgamename - Function that extracts the name of a game from the Steam Store page or from cache given an AppID
-# getgamename - Function that extracts the name of a game from the Steam Store page or from cache given an AppID
 function getgamename() {
     if [[ -e $SWDS_CACHEDIR/gamename/$1 ]]; then
         echo -n "$(< $SWDS_CACHEDIR/gamename/$1)"
