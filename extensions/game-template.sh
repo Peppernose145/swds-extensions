@@ -51,12 +51,21 @@ function getworkshopname() {
     return
 }
 
+# Code to execute each loop when iterating through workshop items
+function EXTENSION_WSITEM_LOOP() {
+    local DEBUG=$1
+    local WORKSHOPID=$2
+    local SUSER="$3"
+    local WSITEMS="$4"
+    shift 4
+    # Put code here   
+}
 # Code to execute before running SteamCMD
 function EXTENSION_BEFORE() {
     local DEBUG=$1
     local WORKSHOPID=$2
-    local SUSER=$3
-    local WSITEMS=$4
+    local SUSER="$3"
+    local WSITEMS="$4"
     shift 4 # Clear args so we can use $1, $2, and so on for extra data
     # Put code here
 }
@@ -65,8 +74,8 @@ function EXTENSION_BEFORE() {
 function EXTENSION_AFTER() {
     local DEBUG=$1
     local WORKSHOPID=$2
-    local SUSER=$3
-    local WSITEMS=$4
+    local SUSER="$3"
+    local WSITEMS="$4"
     shift 4 # Clear args so we can use $1, $2, and so on for extra data
     # Put code here
 }
