@@ -5,4 +5,4 @@ These extensions extend the behavior of SWDS by performing special tasks before 
 
 # List of extensions
 
-[Starbound](docs/Starbound.md)
+* [Starbound](docs/Starbound.md)
