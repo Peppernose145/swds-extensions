@@ -1,5 +1,5 @@
 # Steam Workshop Downloader Script Extension template
-# Input format for both callback functions: <Debug - 0|1> <WorkshopID> <SteamUser> <ExtraData1> <ExtraData2> <and so on...>
+# Input format for both callback functions: <Debug - 0|1> <WorkshopID> <SteamUser> <WorkshopItemList> <ExtraData1> <ExtraData2> <and so on...>
 
 # debug - Function that outputs given string if DEBUG == 1
 # Do not modify this function
@@ -54,7 +54,8 @@ function EXTENSION_BEFORE() {
     DEBUG=$1
     WORKSHOPID=$2
     SUSER=$3
-    shift 3 # Clear args so we can use $1, $2, and so on for extra data
+    WSITEMS=$4
+    shift 4 # Clear args so we can use $1, $2, and so on for extra data
     # Put code here
 }
 
@@ -63,6 +64,7 @@ function EXTENSION_AFTER() {
     DEBUG=$1
     WORKSHOPID=$2
     SUSER=$3
-    shift 3 # Clear args so we can use $1, $2, and so on for extra data
+    WSITEMS=$4
+    shift 4 # Clear args so we can use $1, $2, and so on for extra data
     # Put code here
 }
