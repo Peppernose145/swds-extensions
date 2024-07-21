@@ -93,7 +93,7 @@ function EXTENSION_WSITEM_LOOP() {
     local WORKSHOPID=$2
     local SUSER="$3"
     local WSITEMS="$4"
-    #shift 4
+    shift $#
     debug "Ran EXTENSION_LOOP $DEBUG $WORKSHOPID '$SUSER' '$WSITEMS'"
 }
 
@@ -102,7 +102,7 @@ function EXTENSION_BEFORE() {
     local DEBUG=$1
     local SUSER="$2"
     local WSITEMS="$3"
-    #shift 3 # Clear args so we can use $1, $2, and so on for extra data
+    shift $# # Clear args so we can use $1, $2, and so on for extra data
     debug "Ran EXTENSION_BEFORE $DEBUG '$SUSER' '$WSITEMS'"
     # There's nothing to see here
 }
@@ -112,7 +112,7 @@ function EXTENSION_AFTER() {
     local DEBUG=$1
     local SUSER="$2"
     local WSITEMS="$3"
-    #shift 3 # Clear args so we can use $1, $2, and so on for extra data
+    shift $# # Clear args so we can use $1, $2, and so on for extra data
     debug "Ran EXTENSION_AFTER $DEBUG '$SUSER' '$WSITEMS'"
     local DL_RT="$HOME/Downloads/SteamWorkshop/Appid-211820"
     local DL_DIR="$DL_RT/steamapps/workshop/content/211820"
