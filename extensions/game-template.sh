@@ -57,7 +57,7 @@ function EXTENSION_WSITEM_LOOP() {
     local WORKSHOPID=$2
     local SUSER="$3"
     local WSITEMS="$4"
-    shift 4
+    shift $#
     # Put code here   
 }
 # Code to execute before running SteamCMD
@@ -66,7 +66,7 @@ function EXTENSION_BEFORE() {
     local WORKSHOPID=$2
     local SUSER="$3"
     local WSITEMS="$4"
-    shift 4 # Clear args so we can use $1, $2, and so on for extra data
+    shift $# # Clear args so we can use $1, $2, and so on for extra data
     # Put code here
 }
 
@@ -76,6 +76,6 @@ function EXTENSION_AFTER() {
     local WORKSHOPID=$2
     local SUSER="$3"
     local WSITEMS="$4"
-    shift 4 # Clear args so we can use $1, $2, and so on for extra data
+    shift $# # Clear args so we can use $1, $2, and so on for extra data
     # Put code here
 }
