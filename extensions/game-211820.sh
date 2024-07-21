@@ -133,7 +133,7 @@ function EXTENSION_AFTER() {
         local nn=$(filename_convert "$n")
         local cf="$DL_DIR/$i/contents.pak"
         debug "New name: $nn.pak"
-        mv $MVFLAG "$cf" "$DEST_DIR/$nn.pak" 
+        mv -v "$cf" "$DEST_DIR/$nn.pak" 
         EC=$?
         if [[ $EC -gt 0 ]]; then
             echo >&2 "Failed to move mod to $nn.pak: exit code of mv was $EC"
