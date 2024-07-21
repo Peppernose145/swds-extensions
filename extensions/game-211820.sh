@@ -123,6 +123,9 @@ function EXTENSION_AFTER() {
         echo >&2 "Could not create directory!"
         return 1
     fi
+    if [[ $DEBUG -eq 1 ]]; then
+        MVFLAG="-v"
+    fi
     for i in ${WSITEMS[@]}; do
         debug "Processing $i"
         local c="$DL_DIR/$i"
@@ -130,7 +133,7 @@ function EXTENSION_AFTER() {
         local nn=$(filename_convert "$n")
         local cf="$DL_DIR/$i/contents.pak"
         debug "New name: $nn.pak"
-        mv -v "$cf" "$DEST_DIR/$nn.pak" 
+        mv $MVFLAG "$cf" "$DEST_DIR/$nn.pak" 
         EC=$?
         if [[ $EC -gt 0 ]]; then
             echo >&2 "Failed to move mod to $nn.pak: exit code of mv was $EC"
